@@ -23,6 +23,8 @@ Run [`qmk setup`](https://docs.qmk.fm/#/newbs_getting_started?id=set-up-qmk)[](h
 
 ## Компилируем прошивку
 
+Первым делом нужно установить QMK и в разорхивировать в него [этот архив](https://github.com/devpew/ergosplits/blob/main/files/bastardkb.zip)
+
 Для того чтобы скомпилировать прошивку для своей клавиатуры нужно знать пару вещей. Первое это собственно какая у вас клавиатура.
 
 Если у вас Scylla с трекболом указываем `charybdis/3x6`
@@ -37,13 +39,15 @@ Run [`qmk setup`](https://docs.qmk.fm/#/newbs_getting_started?id=set-up-qmk)[](h
 qmk compile -kb bastardkb/charybdis/3x6/v2/promicro -km default
 ~~~
 
-
-
 ## Как определить какой у меня контроллер?
 
 Blackpill выглядит вот так
 
+![](https://github.com/devpew/ergosplits/blob/main/pics/1689330370.png)
+
 pro-micro выглядит так
+
+![](https://github.com/devpew/ergosplits/blob/main/pics/1689330375.png)
 
 elite-c выглядит так
 
