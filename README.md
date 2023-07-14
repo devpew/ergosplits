@@ -41,8 +41,6 @@ qmk compile -kb bastardkb/charybdis/3x6/v2/promicro -km default
 
 ## Как определить какой у меня контроллер?
 
-Сделать это можно только посмотрев на него
-
 Blackpill выглядит вот так
 
 pro-micro выглядит так
