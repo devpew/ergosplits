@@ -29,6 +29,8 @@ Run [`qmk setup`](https://docs.qmk.fm/#/newbs_getting_started?id=set-up-qmk)[](h
 
 Если у вас 4x6, то соответственно редактируем `charybdis/4x6/keymaps/default/keymap.c`
 
+По своему желанию можете собрать и кеймап с поддержкой via или vial
+
 ## Компилируем прошивку
 
 Первым делом нужно установить QMK и в разорхивировать в него [этот архив](https://github.com/devpew/ergosplits/blob/main/files/bastardkb.zip)
@@ -59,9 +61,9 @@ pro-micro выглядит так
 
 elite-c выглядит так
 
+## Хочу изменить чувствительность трекбола, чувствительность прокрутки или чувствительность прокрутки каретки
 
-
-
+Все это делается в файле `charybdis/charybdis.c`
 
 
 ## РАСКЛАДКА
