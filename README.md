@@ -23,6 +23,22 @@ Open the `QMK MSYS` shortcut
 
 Run [`qmk setup`](https://docs.qmk.fm/#/newbs_getting_started?id=set-up-qmk)[](https://docs.qmk.fm/#/newbs_getting_started?id=set-up-qmk)[](https://docs.qmk.fm/#/newbs_getting_started?id=set-up-qmk)
 
+### Прошивка на Mac
+
+#### Установка qmk через brew
+
+```
+$ brew tap qmk/qmk
+$ brew install qmk
+$ qmk setup
+```
+
+`qmk setup` может остановиться с ошибкой. Исправьте их))) и попробуйте заново
+
+#### Установка QMK Toolbox
+
+Просто скачайте pkg файл отсюда https://github.com/qmk/qmk_toolbox/releases
+
 ## Изменяем раскладку в QMK
 
 Для того чтобы изменить раскладку вам нужно отредактировать файл кеймапа своей клавиатуры
@@ -33,7 +49,32 @@ Run [`qmk setup`](https://docs.qmk.fm/#/newbs_getting_started?id=set-up-qmk)[](h
 
 Если у вас 4x6, то соответственно редактируем `charybdis/4x6/keymaps/default/keymap.c`
 
-По своему желанию можете собрать и кеймап с поддержкой VIA или Vial
+Пример нулевого слоя `charybdis/4x6/keymaps/default/keymap.c`
+
+```c
+  [LAYER_BASE] = LAYOUT(
+  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────╮
+        KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,       KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_LBRC,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,       KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
+       KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_RBRC,
+  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
+                                     LOWER, KC_LGUI, KC_SPC,       KC_ENT,   RAISE,
+                                           XXXXXXX, XXXXXXX,      KC_LALT
+  //                            ╰───────────────────────────╯ ╰──────────────────╯
+  ),
+```
+
+Кей коды можно взять например тут https://config.qmk.fm/#/bastardkb/charybdis/4x6/v2/stemcell/LAYOUT
+
+Замечание: Для работы с режимами трекбола используйте коды: `DRGSCRL`, `SNIPING`, `CARRETM`
+
+По своему желанию можете собрать и кеймап с поддержкой VIA или Vial.
+
+
 
 ## Компилируем прошивку
 
@@ -45,13 +86,20 @@ Run [`qmk setup`](https://docs.qmk.fm/#/newbs_getting_started?id=set-up-qmk)[](h
 Если у вас TBK Mini с трекболом указываем `charybdis/3x6`
 Если у вас Charybdis Mini с трекболом указываем `charybdis/3x5`
 
-Кроме того нужно знать какой у вас контроллер. Чаще всего это promicro.
+Кроме того нужно знать какой у вас контроллер. Чаще всего это **promicro**. (Данного контроллера нет в общем репозитории https://github.com/qmk/qmk_firmware поэтому используйте прошивку из архива)
+
+Например, `bastardkb/charybdis/3x6/v2/promicro`
+Обратите внимание что файл конфигов лежит в другой папке `bastardkb/charybdis/3x6/keymaps/default/keymap.c`. Так и должно быть.
 
 В итоге, сама команда для компиляции прошивки будет выглядеть как-то так
 
 ```
 qmk compile -kb bastardkb/charybdis/3x6/v2/promicro -km default
 ```
+
+Будет скомпилирован файл (.hex или .bin), который нужно будет залить на контроллер клавиатуры.
+
+    >>> Если вы попробуете залить на контроллер прошивку, скомпилированную для другого контроллера, вы можете получить непредвиденное поведение, вплоть до отказа контроллера.
 
 ## Закачиваем прошивку в клавиатуру
 
